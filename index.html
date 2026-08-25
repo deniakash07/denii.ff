@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
-<title>DeniSpark — Anime Quiz Challenge</title>
-<meta name="description" content="DeniSpark — Anime, Tamil Cinema & General Knowledge quiz challenge with 100 levels, points, hints and character guessing.">
-<link rel="canonical" href="https://deniakash07.github.io/denii.ff/">
+<title>deni.ff — Anime Quiz Challenge</title>
+<meta name="description" content="deni.ff — Anime, Tamil Cinema & General Knowledge quiz challenge. 100 levels, points, hints and silhouette character guessing.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -333,7 +332,28 @@ button:focus-visible, .choice:focus-visible, .level-badge:focus-visible{
   border:1px solid var(--border);
   box-shadow:inset 0 0 40px rgba(157,91,255,.15), 0 0 30px -8px var(--violet);
 }
-.sil-box svg{ width:90px; height:110px; filter:drop-shadow(0 0 10px rgba(157,91,255,.5)); }
+.sil-box svg{ width:90px; height:110px; filter:drop-shadow(0 0 10px rgba(157,91,255,.5)); max-width:100%; max-height:100%; }
+
+.silhouette-reveal{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  width:100%; height:100%; padding:10px; text-align:center;
+  opacity:0; transform:scale(.65);
+  transition:opacity .4s ease, transform .45s var(--ease-pop);
+}
+.silhouette-reveal.show{ opacity:1; transform:scale(1); }
+.silhouette-reveal img{
+  max-width:100%; max-height:78px; width:auto; height:auto;
+  object-fit:contain; border-radius:12px;
+  filter:drop-shadow(0 0 12px rgba(157,91,255,.5));
+}
+.silhouette-reveal .reveal-emoji{
+  font-size:46px; line-height:1; margin-bottom:8px;
+  filter:drop-shadow(0 0 14px rgba(157,91,255,.6));
+}
+.silhouette-reveal .reveal-name{
+  font-family:var(--font-display); font-size:11px; letter-spacing:.3px;
+  color:var(--text); line-height:1.35; padding:0 4px;
+}
 
 .q-text{ font-size:clamp(17px,3.2vw,24px); font-weight:700; line-height:1.4; margin:0 0 8px; text-align:left; }
 .q-hint-text{
@@ -503,7 +523,7 @@ button:focus-visible, .choice:focus-visible, .level-badge:focus-visible{
         <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2z" fill="currentColor"/></svg>
         No sign-up · No backend · 100% pure quiz
       </div>
-      <h1 class="logo-wrap"><span class="logo">DeniSpark</span></h1>
+      <h1 class="logo-wrap"><span class="logo">deni<span class="flicker">.ff</span></span></h1>
       <p class="subtitle">Anime <b>•</b> Tamil Cinema <b>•</b> General Knowledge</p>
     </div>
 
@@ -776,40 +796,40 @@ const QUESTION_BANKS = {
 
 const SILHOUETTE_BANK = {
   easy: [
-    { q:"Mystery Character: A cheerful pirate captain who wears a straw hat and dreams of becoming Pirate King.", choices:["Monkey D. Luffy","Roronoa Zoro","Sanji","Portgas D. Ace"], a:0, hint:"His famous goal involves finding a legendary treasure called the 'One Piece'." },
-    { q:"Mystery Character: A ninja from the Hidden Leaf Village who wants to become Hokage.", choices:["Sasuke Uchiha","Naruto Uzumaki","Kakashi Hatake","Rock Lee"], a:1, hint:"He has whisker-like marks on his cheeks and a nine-tailed fox sealed inside him." },
-    { q:"Mystery Character: A Saiyan warrior raised on Earth who protects it from powerful threats.", choices:["Vegeta","Piccolo","Goku","Gohan"], a:2, hint:"He can transform his hair gold when he 'goes Super'." },
-    { q:"Mystery Character: A young demon slayer trying to cure his sister, who was turned into a demon.", choices:["Zenitsu Agatsuma","Tanjiro Kamado","Inosuke Hashibira","Giyu Tomioka"], a:1, hint:"He wears a checkered green-and-black haori." },
-    { q:"Mystery Character: A bald hero who can defeat almost any enemy with a single punch.", choices:["Genos","Saitama","Mumen Rider","King"], a:1, hint:"He's famous for grocery shopping during sales while heroing on the side." },
-    { q:"Mystery Character: A Soul Reaper who protects the living world from evil spirits.", choices:["Ichigo Kurosaki","Uryu Ishida","Renji Abarai","Chad"], a:0, hint:"His bright orange hair makes him stand out immediately." },
-    { q:"Mystery Character: A young alchemist who lost an arm and a leg trying to bring his mother back to life.", choices:["Alphonse Elric","Edward Elric","Roy Mustang","Ling Yao"], a:1, hint:"He is famously the 'Fullmetal Alchemist' himself." },
-    { q:"Mystery Character: A quirkless boy who inherits a legendary power to become the greatest hero.", choices:["Katsuki Bakugo","Shoto Todoroki","Izuku Midoriya","Tenya Iida"], a:2, hint:"His hero name is 'Deku'." },
-    { q:"Mystery Character: A genius high schooler who uses a supernatural notebook to punish criminals.", choices:["L Lawliet","Light Yagami","Near","Teru Mikami"], a:1, hint:"He believes he can become the god of a new, crime-free world." },
-    { q:"Mystery Character: A stoic soldier known as 'Humanity's Strongest' who fights giant creatures.", choices:["Erwin Smith","Armin Arlert","Levi Ackerman","Jean Kirstein"], a:2, hint:"He's famously short but devastatingly skilled with twin blades." }
+    { q:"Mystery Character: A cheerful pirate captain who wears a straw hat and dreams of becoming Pirate King.", choices:["Monkey D. Luffy","Roronoa Zoro","Sanji","Portgas D. Ace"], a:0, hint:"His famous goal involves finding a legendary treasure called the 'One Piece'.", image:"👒" },
+    { q:"Mystery Character: A ninja from the Hidden Leaf Village who wants to become Hokage.", choices:["Sasuke Uchiha","Naruto Uzumaki","Kakashi Hatake","Rock Lee"], a:1, hint:"He has whisker-like marks on his cheeks and a nine-tailed fox sealed inside him.", image:"🦊" },
+    { q:"Mystery Character: A Saiyan warrior raised on Earth who protects it from powerful threats.", choices:["Vegeta","Piccolo","Goku","Gohan"], a:2, hint:"He can transform his hair gold when he 'goes Super'.", image:"🐉" },
+    { q:"Mystery Character: A young demon slayer trying to cure his sister, who was turned into a demon.", choices:["Zenitsu Agatsuma","Tanjiro Kamado","Inosuke Hashibira","Giyu Tomioka"], a:1, hint:"He wears a checkered green-and-black haori.", image:"🌊" },
+    { q:"Mystery Character: A bald hero who can defeat almost any enemy with a single punch.", choices:["Genos","Saitama","Mumen Rider","King"], a:1, hint:"He's famous for grocery shopping during sales while heroing on the side.", image:"👊" },
+    { q:"Mystery Character: A Soul Reaper who protects the living world from evil spirits.", choices:["Ichigo Kurosaki","Uryu Ishida","Renji Abarai","Chad"], a:0, hint:"His bright orange hair makes him stand out immediately.", image:"⚔️" },
+    { q:"Mystery Character: A young alchemist who lost an arm and a leg trying to bring his mother back to life.", choices:["Alphonse Elric","Edward Elric","Roy Mustang","Ling Yao"], a:1, hint:"He is famously the 'Fullmetal Alchemist' himself.", image:"⚗️" },
+    { q:"Mystery Character: A quirkless boy who inherits a legendary power to become the greatest hero.", choices:["Katsuki Bakugo","Shoto Todoroki","Izuku Midoriya","Tenya Iida"], a:2, hint:"His hero name is 'Deku'.", image:"💥" },
+    { q:"Mystery Character: A genius high schooler who uses a supernatural notebook to punish criminals.", choices:["L Lawliet","Light Yagami","Near","Teru Mikami"], a:1, hint:"He believes he can become the god of a new, crime-free world.", image:"📓" },
+    { q:"Mystery Character: A stoic soldier known as 'Humanity's Strongest' who fights giant creatures.", choices:["Erwin Smith","Armin Arlert","Levi Ackerman","Jean Kirstein"], a:2, hint:"He's famously short but devastatingly skilled with twin blades.", image:"🗡️" }
   ],
   intermediate: [
-    { q:"Mystery Character: A jujutsu sorcerer teacher with immense power and a signature blindfold.", choices:["Satoru Gojo","Suguru Geto","Toji Fushiguro","Masamichi Yaga"], a:0, hint:"He can create infinite distance between himself and any attack." },
-    { q:"Mystery Character: A prodigious ninja who mastered the Sharingan and later joined a criminal organization.", choices:["Sasuke Uchiha","Itachi Uchiha","Obito Uchiha","Shisui Uchiha"], a:1, hint:"He is remembered for a tragic decision involving his own clan." },
-    { q:"Mystery Character: A young assassin-in-training who befriends a boy searching for his father.", choices:["Killua Zoldyck","Gon Freecss","Kurapika","Leorio"], a:0, hint:"He comes from a legendary family of professional assassins." },
-    { q:"Mystery Character: A skilled swordsman who dreams of becoming the world's greatest and often gets lost.", choices:["Sanji","Zoro","Usopp","Brook"], a:1, hint:"He trains with three swords at once." },
-    { q:"Mystery Character: A dedicated Survey Corps commander who leads soldiers beyond the walls.", choices:["Erwin Smith","Levi Ackerman","Hange Zoe","Dot Pixis"], a:0, hint:"He famously sacrifices his own arm during a pivotal charge." },
-    { q:"Mystery Character: A prince of a fallen warrior race who becomes a rival-turned-ally.", choices:["Goku","Vegeta","Piccolo","Frieza"], a:1, hint:"He carries immense pride in his royal Saiyan heritage." },
-    { q:"Mystery Character: A young demon who protects her older brother despite her transformation.", choices:["Shinobu Kocho","Nezuko Kamado","Kanao Tsuyuri","Mitsuri Kanroji"], a:1, hint:"She carries a bamboo muzzle to keep her urges in check." },
-    { q:"Mystery Character: A Soul Society noblewoman known for her small stature and ice-type abilities.", choices:["Rukia Kuchiki","Orihime Inoue","Yoruichi Shihoin","Nemu Kurotsuchi"], a:0, hint:"She gives Ichigo his Soul Reaper powers early in the story." },
-    { q:"Mystery Character: A timid demon slayer who becomes fearless only while asleep.", choices:["Genya Shinazugawa","Zenitsu Agatsuma","Muichiro Tokito","Obanai Iguro"], a:1, hint:"His thunder-based breathing style has a single, devastating form." },
-    { q:"Mystery Character: A sand-wielding shinobi who becomes a respected village leader.", choices:["Gaara","Rock Lee","Shikamaru Nara","Neji Hyuga"], a:0, hint:"He once had a tailed beast sealed inside him and later became Kazekage." }
+    { q:"Mystery Character: A jujutsu sorcerer teacher with immense power and a signature blindfold.", choices:["Satoru Gojo","Suguru Geto","Toji Fushiguro","Masamichi Yaga"], a:0, hint:"He can create infinite distance between himself and any attack.", image:"👁️" },
+    { q:"Mystery Character: A prodigious ninja who mastered the Sharingan and later joined a criminal organization.", choices:["Sasuke Uchiha","Itachi Uchiha","Obito Uchiha","Shisui Uchiha"], a:1, hint:"He is remembered for a tragic decision involving his own clan.", image:"🌀" },
+    { q:"Mystery Character: A young assassin-in-training who befriends a boy searching for his father.", choices:["Killua Zoldyck","Gon Freecss","Kurapika","Leorio"], a:0, hint:"He comes from a legendary family of professional assassins.", image:"⚡" },
+    { q:"Mystery Character: A skilled swordsman who dreams of becoming the world's greatest and often gets lost.", choices:["Sanji","Zoro","Usopp","Brook"], a:1, hint:"He trains with three swords at once.", image:"⚔️" },
+    { q:"Mystery Character: A dedicated Survey Corps commander who leads soldiers beyond the walls.", choices:["Erwin Smith","Levi Ackerman","Hange Zoe","Dot Pixis"], a:0, hint:"He famously sacrifices his own arm during a pivotal charge.", image:"🎖️" },
+    { q:"Mystery Character: A prince of a fallen warrior race who becomes a rival-turned-ally.", choices:["Goku","Vegeta","Piccolo","Frieza"], a:1, hint:"He carries immense pride in his royal Saiyan heritage.", image:"👑" },
+    { q:"Mystery Character: A young demon who protects her older brother despite her transformation.", choices:["Shinobu Kocho","Nezuko Kamado","Kanao Tsuyuri","Mitsuri Kanroji"], a:1, hint:"She carries a bamboo muzzle to keep her urges in check.", image:"🎋" },
+    { q:"Mystery Character: A Soul Society noblewoman known for her small stature and ice-type abilities.", choices:["Rukia Kuchiki","Orihime Inoue","Yoruichi Shihoin","Nemu Kurotsuchi"], a:0, hint:"She gives Ichigo his Soul Reaper powers early in the story.", image:"❄️" },
+    { q:"Mystery Character: A timid demon slayer who becomes fearless only while asleep.", choices:["Genya Shinazugawa","Zenitsu Agatsuma","Muichiro Tokito","Obanai Iguro"], a:1, hint:"His thunder-based breathing style has a single, devastating form.", image:"⚡" },
+    { q:"Mystery Character: A sand-wielding shinobi who becomes a respected village leader.", choices:["Gaara","Rock Lee","Shikamaru Nara","Neji Hyuga"], a:0, hint:"He once had a tailed beast sealed inside him and later became Kazekage.", image:"🏜️" }
   ],
   expert: [
-    { q:"Mystery Character: A demon swordsman who was once a human wielding the very first breathing style.", choices:["Akaza","Doma","Kokushibo","Muzan Kibutsuji"], a:2, hint:"He was a Upper Moon One and had a twin brother who mastered Sun Breathing." },
-    { q:"Mystery Character: An insect-like being who becomes king of a terrifying ant colony.", choices:["Neferpitou","Meruem","Youpi","Shaiapouf"], a:1, hint:"He hatches last from the Queen and quickly proves the strongest." },
-    { q:"Mystery Character: A homunculus who orchestrates events from the shadows, seeking to become a perfect being.", choices:["Envy","Father","Pride","Wrath"], a:1, hint:"He originated from a flask and calls the other homunculi his 'children'." },
-    { q:"Mystery Character: An immortal witch bound by contract to a young prince seeking revenge.", choices:["Kallen Kozuki","C.C.","Nunnally Lamperouge","Shirley Fenette"], a:1, hint:"She grants the power of Geass to the story's protagonist." },
-    { q:"Mystery Character: A brutal, battle-hungry captain who wields the blade Nozarashi.", choices:["Kenpachi Zaraki","Byakuya Kuchiki","Toshiro Hitsugaya","Sosuke Aizen"], a:0, hint:"He leads Squad Eleven and lives for the thrill of combat." },
-    { q:"Mystery Character: An ancient, cursed spirit known as the 'King of Curses'.", choices:["Sukuna","Mahito","Jogo","Hanami"], a:0, hint:"He was once sealed inside a set of cursed fingers." },
-    { q:"Mystery Character: A soldier who secretly infiltrates the Survey Corps while hiding a titan-shifting secret.", choices:["Historia Reiss","Annie Leonhart","Ymir","Pieck"], a:1, hint:"She is later revealed as the Female Titan." },
-    { q:"Mystery Character: A vampire servant bound to a secret organization, known for immense regenerative power.", choices:["Alucard","Seras Victoria","Walter C. Dornez","Anderson"], a:0, hint:"His name is his master's surname spelled backward." },
-    { q:"Mystery Character: A laid-back bounty hunter with a mysterious past and a signature yellow ship.", choices:["Jet Black","Spike Spiegel","Vicious","Faye Valentine"], a:1, hint:"He's a former member of the Red Dragon Syndicate." },
-    { q:"Mystery Character: A charismatic pirate captain famous for his scarred eye and unmatched swordsmanship.", choices:["Whitebeard","Shanks","Kaido","Blackbeard"], a:1, hint:"He gave up an arm to save a young boy who idolized him." }
+    { q:"Mystery Character: A demon swordsman who was once a human wielding the very first breathing style.", choices:["Akaza","Doma","Kokushibo","Muzan Kibutsuji"], a:2, hint:"He was a Upper Moon One and had a twin brother who mastered Sun Breathing.", image:"🌙" },
+    { q:"Mystery Character: An insect-like being who becomes king of a terrifying ant colony.", choices:["Neferpitou","Meruem","Youpi","Shaiapouf"], a:1, hint:"He hatches last from the Queen and quickly proves the strongest.", image:"🐜" },
+    { q:"Mystery Character: A homunculus who orchestrates events from the shadows, seeking to become a perfect being.", choices:["Envy","Father","Pride","Wrath"], a:1, hint:"He originated from a flask and calls the other homunculi his 'children'.", image:"🧪" },
+    { q:"Mystery Character: An immortal witch bound by contract to a young prince seeking revenge.", choices:["Kallen Kozuki","C.C.","Nunnally Lamperouge","Shirley Fenette"], a:1, hint:"She grants the power of Geass to the story's protagonist.", image:"🍕" },
+    { q:"Mystery Character: A brutal, battle-hungry captain who wields the blade Nozarashi.", choices:["Kenpachi Zaraki","Byakuya Kuchiki","Toshiro Hitsugaya","Sosuke Aizen"], a:0, hint:"He leads Squad Eleven and lives for the thrill of combat.", image:"💀" },
+    { q:"Mystery Character: An ancient, cursed spirit known as the 'King of Curses'.", choices:["Sukuna","Mahito","Jogo","Hanami"], a:0, hint:"He was once sealed inside a set of cursed fingers.", image:"👹" },
+    { q:"Mystery Character: A soldier who secretly infiltrates the Survey Corps while hiding a titan-shifting secret.", choices:["Historia Reiss","Annie Leonhart","Ymir","Pieck"], a:1, hint:"She is later revealed as the Female Titan.", image:"🧊" },
+    { q:"Mystery Character: A vampire servant bound to a secret organization, known for immense regenerative power.", choices:["Alucard","Seras Victoria","Walter C. Dornez","Anderson"], a:0, hint:"His name is his master's surname spelled backward.", image:"🧛" },
+    { q:"Mystery Character: A laid-back bounty hunter with a mysterious past and a signature yellow ship.", choices:["Jet Black","Spike Spiegel","Vicious","Faye Valentine"], a:1, hint:"He's a former member of the Red Dragon Syndicate.", image:"🚀" },
+    { q:"Mystery Character: A charismatic pirate captain famous for his scarred eye and unmatched swordsmanship.", choices:["Whitebeard","Shanks","Kaido","Blackbeard"], a:1, hint:"He gave up an arm to save a young boy who idolized him.", image:"⚓" }
   ]
 };
 
@@ -913,7 +933,7 @@ function buildLevelQuestions(categoryKey, level){
     const correctText = item.choices[item.a];
     const shuffledChoices = seededShuffle(item.choices, (seed + idx * 7919) >>> 0);
     const newIdx = shuffledChoices.indexOf(correctText);
-    return { q:item.q, choices:shuffledChoices, a:newIdx, hint:item.hint, tier:tier };
+    return { q:item.q, choices:shuffledChoices, a:newIdx, hint:item.hint, tier:tier, image:item.image };
   });
 }
 
@@ -1186,6 +1206,29 @@ function randomSilhouetteSVG(seedNum){
   return variants[Math.abs(seedNum) % variants.length];
 }
 
+// Reveals the character for the current silhouette question the instant an
+// answer is selected. Uses each question's `image` field (an emoji/art token
+// rather than a real character photo, to stay clear of copyrighted artwork)
+// plus the correct character's name, with a fade/scale reveal animation.
+function revealSilhouetteCharacter(item){
+  const silBox = document.getElementById("silBox");
+  if(!silBox) return;
+  const characterName = item.choices[item.a];
+  const art = item.image
+    ? `<div class="reveal-emoji">${item.image}</div>`
+    : `<div class="reveal-emoji">✨</div>`;
+  silBox.innerHTML = `
+    <div class="silhouette-reveal" id="silhouetteReveal">
+      ${art}
+      <div class="reveal-name">${characterName}</div>
+    </div>
+  `;
+  requestAnimationFrame(()=>{
+    const el = document.getElementById("silhouetteReveal");
+    if(el) el.classList.add("show");
+  });
+}
+
 function spawnPointsFloat(delta){
   const anchor = document.getElementById("scoreLiveAnchor");
   const el = document.createElement("span");
@@ -1272,6 +1315,10 @@ function handleAnswer(selectedIdx, btnEl){
   const item = state.pool[state.index];
   const isCorrect = selectedIdx === item.a;
   const allChoiceButtons = document.querySelectorAll("#choices .choice");
+
+  if(state.category === "silhouette"){
+    revealSilhouetteCharacter(item);
+  }
 
   allChoiceButtons.forEach((b, i)=>{
     b.disabled = true;
